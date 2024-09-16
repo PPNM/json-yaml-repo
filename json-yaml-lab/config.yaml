@@ -1,0 +1,24 @@
+---
+database: &common_database
+  #&"anchor" define reuseable data
+  host: db.example.net
+  port: 3306
+  user: ppnm
+  password: password
+  name: mydb
+  enabled: true
+  legacy: yes
+
+database_new: *common_database
+  #*"alias" reuse defined data
+
+prod_db: *common_database
+  host: prod_db.example.net
+  password: prodpassword
+  #copy and overwrite host and password values from common_database
+
+dev_db:
+  <<: *common_database
+  host: localhost
+  password: devpassword
+  #"<<" merage and overwrite host and password values from common_database
